@@ -218,6 +218,7 @@ class LoginForm(Form, NextFormMixin):
         if not self.next.data:
             self.next.data = request.args.get('next', '')
         self.remember.default = config_value('DEFAULT_REMEMBER_ME')
+        self.show_faulty = config_value('LOGIN_SHOW_FAULTY_USER')
         if current_app.extensions['security'].recoverable and \
                 not self.password.description:
             html = Markup(u'<a href="{url}">{message}</a>'.format(
@@ -232,7 +233,7 @@ class LoginForm(Form, NextFormMixin):
 
         self.user = _datastore.get_user(self.email.data)
 
-        if self.user is None:
+        if self.user is None and self.show_faulty:
             self.email.errors.append(get_message('USER_DOES_NOT_EXIST')[0])
             return False
         if not self.user.password:
