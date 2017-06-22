@@ -233,8 +233,9 @@ class LoginForm(Form, NextFormMixin):
 
         self.user = _datastore.get_user(self.email.data)
 
-        if self.user is None and self.show_faulty:
-            self.email.errors.append(get_message('USER_DOES_NOT_EXIST')[0])
+        if self.user is None:
+            if self.show_faulty:
+                self.email.errors.append(get_message('USER_DOES_NOT_EXIST')[0])
             return False
         if not self.user.password:
             self.password.errors.append(get_message('PASSWORD_NOT_SET')[0])
