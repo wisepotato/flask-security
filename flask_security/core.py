@@ -186,6 +186,8 @@ _default_messages = {
         _('Password must be at least 6 characters'), 'error'),
     'USER_DOES_NOT_EXIST': (
         _('Specified user does not exist'), 'error'),
+    'INVALID_LOGIN' : (
+        _('Invalid authentication combination.'), 'errors'),
     'INVALID_PASSWORD': (
         _('Invalid password'), 'error'),
     'PASSWORDLESS_LOGIN_SUCCESSFUL': (

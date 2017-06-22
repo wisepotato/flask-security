@@ -42,7 +42,7 @@ msgstr "Uw wachtwoord werd gereset"
 
 #: flask_security/core.py:103
 msgid "Your password has been changed"
-msgstr "Uw wachtwoord werd gewijzigd"
+msgstr "Uw wachtwoord is gewijzigd"
 
 #: flask_security/core.py:105
 msgid "Password reset instructions"
@@ -226,7 +226,7 @@ msgstr "Login"
 #: flask_security/forms.py:35 flask_security/templates/security/_menu.html:6
 #: flask_security/templates/security/register_user.html:3
 msgid "Register"
-msgstr "Registreer"
+msgstr "Registreren"
 
 #: flask_security/forms.py:36
 msgid "Resend Confirmation Instructions"
@@ -238,11 +238,11 @@ msgstr "Herstel wachtwoord"
 
 #: flask_security/forms.py:38
 msgid "Reset Password"
-msgstr "reset wachtwoord"
+msgstr "Reset wachtwoord"
 
 #: flask_security/forms.py:39
 msgid "Retype Password"
-msgstr "Hertyp wachtwoord"
+msgstr "Typ nogmaals wachtwoord"
 
 #: flask_security/forms.py:40
 msgid "New Password"
@@ -286,7 +286,7 @@ msgstr "Verzend bevestigings instructies opnieuw"
 
 #: flask_security/templates/security/email/change_notice.html:1
 msgid "Your password has been changed."
-msgstr "Uw wachtwoord werd gewijzigd."
+msgstr "Uw wachtwoord is gewijzigd."
 
 #: flask_security/templates/security/email/change_notice.html:3
 msgid "If you did not change your password,"
