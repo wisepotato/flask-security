@@ -234,23 +234,28 @@ class LoginForm(Form, NextFormMixin):
         self.user = _datastore.get_user(self.email.data)
 
         if self.user is None:
-            if self.show_faulty:
-                self.email.errors.append(get_message('USER_DOES_NOT_EXIST')[0])
-            else:
-                self.email.errors.append(get_message('INVALID_LOGIN')[0])
+            self.email.errors.append(get_message('USER_DOES_NOT_EXIST')[0])
             return False
-        if not self.user.password:
-            self.password.errors.append(get_message('PASSWORD_NOT_SET')[0])
-            return False
-        if not verify_and_update_password(self.password.data, self.user):
-            self.password.errors.append(get_message('INVALID_PASSWORD')[0])
-            return False
-        if requires_confirmation(self.user):
-            self.email.errors.append(get_message('CONFIRMATION_REQUIRED')[0])
-            return False
-        if not self.user.is_active:
-            self.email.errors.append(get_message('DISABLED_ACCOUNT')[0])
-            return False
+        elif self.show_faulty:
+            if not self.user.password:
+                self.password.errors.append(get_message('PASSWORD_NOT_SET')[0])
+                return False
+            if not verify_and_update_password(self.password.data, self.user):
+                if self.show_faulty:
+                    self.password.errors.append(get_message('INVALID_PASSWORD')[0])
+                else:
+                    self.email.errors.append('')
+                    self.password.errors.append(get_message('INVALID_LOGIN')[0])
+                return False
+            if requires_confirmation(self.user):
+                self.email.errors.append(get_message('CONFIRMATION_REQUIRED')[0])
+                return False
+            if not self.user.is_active:
+                self.email.errors.append(get_message('DISABLED_ACCOUNT')[0])
+                return False
+        else:
+            self.password.errors.append(get_message('INVALID_LOGIN')[0])
+            self.email.errors.append('')
         return True
 
 
